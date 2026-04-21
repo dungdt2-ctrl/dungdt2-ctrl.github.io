@@ -1,0 +1,1054 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dzung Dang | Profile</title>
+    <meta
+      name="description"
+      content="Profile page for Dzung Dang, fullstack developer specializing in React and Go."
+    />
+    <style>
+      :root {
+        --bg: #ffffff;
+        --text: #171717;
+        --muted: #4d4d4d;
+        --soft: #666666;
+        --line: rgba(0, 0, 0, 0.08);
+        --line-light: #ebebeb;
+        --surface: #ffffff;
+        --surface-soft: #fafafa;
+        --focus: hsla(212, 100%, 48%, 1);
+        --link: #0072f5;
+        --blue: #0a72ef;
+        --pink: #de1d8d;
+        --red: #ff5b4f;
+        --blue-bg: #ebf5ff;
+        --blue-text: #0068d6;
+        --max: 1160px;
+        --radius-sm: 6px;
+        --radius-md: 8px;
+        --radius-lg: 12px;
+        --shadow-border: 0 0 0 1px var(--line);
+        --shadow-card: 0 0 0 1px var(--line), 0 2px 2px rgba(0, 0, 0, 0.04),
+          0 8px 8px -8px rgba(0, 0, 0, 0.04), inset 0 0 0 1px var(--surface-soft);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        background:
+          radial-gradient(circle at top left, rgba(10, 114, 239, 0.06), transparent 28%),
+          radial-gradient(circle at 90% 12%, rgba(222, 29, 141, 0.05), transparent 24%),
+          radial-gradient(circle at 72% 74%, rgba(255, 91, 79, 0.05), transparent 22%),
+          var(--bg);
+        color: var(--text);
+        font-family: Geist, Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+          sans-serif;
+        font-size: 16px;
+        line-height: 1.5;
+        -webkit-font-smoothing: antialiased;
+        text-rendering: optimizeLegibility;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .page {
+        width: min(var(--max), calc(100% - 32px));
+        margin: 0 auto;
+      }
+
+      .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        backdrop-filter: blur(14px);
+        background: rgba(255, 255, 255, 0.86);
+        box-shadow: var(--shadow-border);
+      }
+
+      .topbar__inner {
+        width: min(var(--max), calc(100% - 32px));
+        margin: 0 auto;
+        min-height: 72px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        min-width: 0;
+      }
+
+      .brand__mark {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background:
+          linear-gradient(135deg, rgba(23, 23, 23, 0.98), rgba(23, 23, 23, 0.88)),
+          #171717;
+        box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.08), 0 10px 20px rgba(0, 0, 0, 0.05);
+      }
+
+      .brand__text {
+        display: grid;
+        gap: 2px;
+      }
+
+      .brand__name {
+        font-size: 14px;
+        font-weight: 600;
+        letter-spacing: -0.02em;
+        line-height: 1.1;
+      }
+
+      .brand__role {
+        font-size: 12px;
+        color: var(--muted);
+      }
+
+      .nav {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+      }
+
+      .nav a {
+        font-size: 14px;
+        font-weight: 500;
+        color: var(--muted);
+      }
+
+      .nav a:hover,
+      .nav a:focus-visible {
+        color: var(--text);
+      }
+
+      .nav__cta {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        height: 36px;
+        padding: 0 14px;
+        border-radius: 9999px;
+        background: var(--text);
+        color: #fff !important;
+        box-shadow: var(--shadow-border);
+      }
+
+      main {
+        padding: 40px 0 72px;
+      }
+
+      .hero {
+        display: grid;
+        grid-template-columns: minmax(0, 1.25fr) minmax(280px, 0.75fr);
+        gap: 32px;
+        align-items: start;
+        padding: 28px 0 48px;
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 18px;
+        padding: 6px 10px;
+        border-radius: 9999px;
+        background: var(--blue-bg);
+        color: var(--blue-text);
+        font-size: 12px;
+        font-weight: 500;
+        letter-spacing: 0.01em;
+      }
+
+      .eyebrow__dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 9999px;
+        background: var(--blue-text);
+      }
+
+      h1,
+      h2,
+      h3,
+      p {
+        margin: 0;
+      }
+
+      .hero h1 {
+        max-width: 12ch;
+        font-size: clamp(3rem, 7vw, 5rem);
+        line-height: 0.98;
+        letter-spacing: -0.06em;
+        font-weight: 600;
+      }
+
+      .hero__copy {
+        margin-top: 20px;
+        max-width: 62ch;
+        font-size: 20px;
+        line-height: 1.8;
+        color: var(--muted);
+      }
+
+      .hero__actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 28px;
+      }
+
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 40px;
+        padding: 0 16px;
+        border-radius: var(--radius-sm);
+        box-shadow: var(--shadow-border);
+        font-size: 14px;
+        font-weight: 500;
+        letter-spacing: -0.01em;
+        transition: transform 160ms ease, background-color 160ms ease, color 160ms ease,
+          box-shadow 160ms ease;
+      }
+
+      .button:hover {
+        transform: translateY(-1px);
+      }
+
+      .button:focus-visible,
+      .nav a:focus-visible,
+      .card a:focus-visible {
+        outline: 2px solid var(--focus);
+        outline-offset: 2px;
+      }
+
+      .button--dark {
+        background: var(--text);
+        color: #fff;
+      }
+
+      .button--light {
+        background: #fff;
+        color: var(--text);
+      }
+
+      .hero__panel {
+        display: grid;
+        gap: 16px;
+      }
+
+      .stat-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .stat {
+        padding: 18px;
+        border-radius: var(--radius-md);
+        background: var(--surface);
+        box-shadow: var(--shadow-card);
+        min-height: 124px;
+        display: grid;
+        align-content: space-between;
+      }
+
+      .stat__value {
+        font-size: 32px;
+        line-height: 1;
+        font-weight: 600;
+        letter-spacing: -0.05em;
+      }
+
+      .stat__label {
+        font-size: 13px;
+        color: var(--muted);
+      }
+
+      .workflow {
+        display: grid;
+        gap: 10px;
+        padding: 18px;
+        border-radius: var(--radius-lg);
+        background: var(--surface);
+        box-shadow: var(--shadow-card);
+      }
+
+      .workflow__title {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+      }
+
+      .workflow__title span {
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--soft);
+      }
+
+      .workflow__steps {
+        display: grid;
+        gap: 8px;
+      }
+
+      .step {
+        display: grid;
+        grid-template-columns: 92px 1fr;
+        gap: 12px;
+        align-items: center;
+        padding: 12px;
+        border-radius: 10px;
+        background: var(--surface-soft);
+      }
+
+      .step__label {
+        font-family: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .step__label--blue {
+        color: var(--blue);
+      }
+
+      .step__label--pink {
+        color: var(--pink);
+      }
+
+      .step__label--red {
+        color: var(--red);
+      }
+
+      .step__desc {
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      .section {
+        padding: 20px 0 0;
+      }
+
+      .section + .section {
+        margin-top: 56px;
+        padding-top: 36px;
+        box-shadow: inset 0 1px 0 0 #171717;
+      }
+
+      .section__head {
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+        gap: 16px;
+        margin-bottom: 20px;
+      }
+
+      .section__head h2 {
+        font-size: clamp(2rem, 4vw, 2.5rem);
+        line-height: 1.15;
+        letter-spacing: -0.05em;
+        font-weight: 600;
+      }
+
+      .section__meta {
+        max-width: 42ch;
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      .summary-grid,
+      .project-grid,
+      .skill-grid,
+      .edu-grid {
+        display: grid;
+        gap: 16px;
+      }
+
+      .summary-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .card {
+        padding: 20px;
+        border-radius: var(--radius-lg);
+        background: var(--surface);
+        box-shadow: var(--shadow-card);
+      }
+
+      .card__title {
+        font-size: 20px;
+        line-height: 1.3;
+        letter-spacing: -0.03em;
+        font-weight: 600;
+      }
+
+      .card__sub {
+        margin-top: 6px;
+        font-size: 14px;
+        color: var(--muted);
+      }
+
+      .card__list {
+        margin: 14px 0 0;
+        padding: 0;
+        list-style: none;
+        display: grid;
+        gap: 10px;
+      }
+
+      .card__list li {
+        display: flex;
+        gap: 10px;
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      .card__list li::before {
+        content: "";
+        width: 6px;
+        height: 6px;
+        margin-top: 8px;
+        border-radius: 9999px;
+        background: var(--text);
+        flex: none;
+      }
+
+      .experience {
+        display: grid;
+        gap: 16px;
+      }
+
+      .job {
+        display: grid;
+        grid-template-columns: 220px minmax(0, 1fr);
+        gap: 20px;
+        align-items: start;
+      }
+
+      .job__aside {
+        padding-right: 10px;
+      }
+
+      .job__company {
+        font-size: 18px;
+        font-weight: 600;
+        letter-spacing: -0.03em;
+      }
+
+      .job__meta {
+        margin-top: 6px;
+        display: grid;
+        gap: 4px;
+        font-size: 14px;
+        color: var(--muted);
+      }
+
+      .job__role {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 12px;
+        padding: 6px 10px;
+        border-radius: 9999px;
+        background: var(--blue-bg);
+        color: var(--blue-text);
+        font-size: 12px;
+        font-weight: 600;
+      }
+
+      .job__bullets {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        display: grid;
+        gap: 12px;
+      }
+
+      .job__bullets li {
+        padding-left: 14px;
+        position: relative;
+        color: var(--muted);
+      }
+
+      .job__bullets li::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0.68em;
+        width: 6px;
+        height: 6px;
+        border-radius: 9999px;
+        background: var(--text);
+      }
+
+      .project-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .project {
+        min-height: 186px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      .project__name {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        font-size: 20px;
+        line-height: 1.25;
+        font-weight: 600;
+        letter-spacing: -0.03em;
+      }
+
+      .project__tag {
+        display: inline-flex;
+        align-items: center;
+        padding: 5px 10px;
+        border-radius: 9999px;
+        background: var(--blue-bg);
+        color: var(--blue-text);
+        font-size: 12px;
+        font-weight: 500;
+        white-space: nowrap;
+      }
+
+      .project__desc {
+        margin-top: 10px;
+        color: var(--muted);
+      }
+
+      .project__foot {
+        margin-top: 16px;
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+
+      .chip {
+        display: inline-flex;
+        align-items: center;
+        padding: 6px 10px;
+        border-radius: 9999px;
+        background: var(--surface-soft);
+        color: var(--text);
+        font-size: 12px;
+        font-weight: 500;
+        box-shadow: var(--shadow-border);
+      }
+
+      .edu-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .edu__item {
+        display: grid;
+        gap: 8px;
+      }
+
+      .edu__degree {
+        font-size: 18px;
+        font-weight: 600;
+        letter-spacing: -0.03em;
+      }
+
+      .edu__school,
+      .edu__year {
+        color: var(--muted);
+      }
+
+      .skills {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 16px;
+      }
+
+      .skill__title {
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--text);
+        margin-bottom: 10px;
+        letter-spacing: -0.01em;
+      }
+
+      .skill__list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .contact {
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 16px;
+        align-items: stretch;
+      }
+
+      .contact__card {
+        padding: 24px;
+        border-radius: var(--radius-lg);
+        background: var(--surface);
+        box-shadow: var(--shadow-card);
+      }
+
+      .contact__title {
+        font-size: 24px;
+        line-height: 1.25;
+        letter-spacing: -0.04em;
+        font-weight: 600;
+      }
+
+      .contact__list {
+        margin: 18px 0 0;
+        padding: 0;
+        list-style: none;
+        display: grid;
+        gap: 12px;
+      }
+
+      .contact__list li {
+        display: grid;
+        gap: 4px;
+      }
+
+      .contact__label {
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--soft);
+        font-weight: 600;
+      }
+
+      .contact__value {
+        font-size: 15px;
+        color: var(--text);
+      }
+
+      .footer-note {
+        margin-top: 16px;
+        font-size: 12px;
+        color: var(--soft);
+      }
+
+      @media (max-width: 980px) {
+        .hero,
+        .contact,
+        .job,
+        .skills,
+        .summary-grid,
+        .project-grid,
+        .edu-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .hero h1 {
+          max-width: 14ch;
+        }
+
+        .job__aside {
+          padding-right: 0;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .page,
+        .topbar__inner {
+          width: min(var(--max), calc(100% - 24px));
+        }
+
+        .topbar__inner {
+          min-height: 64px;
+          align-items: flex-start;
+          padding: 14px 0;
+          flex-direction: column;
+          gap: 12px;
+        }
+
+        .nav {
+          justify-content: flex-start;
+          gap: 14px;
+        }
+
+        main {
+          padding-top: 24px;
+        }
+
+        .hero {
+          padding-top: 16px;
+          gap: 20px;
+        }
+
+        .hero__copy {
+          font-size: 17px;
+          line-height: 1.7;
+        }
+
+        .section + .section {
+          margin-top: 44px;
+          padding-top: 28px;
+        }
+
+        .stat-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+
+        .step {
+          grid-template-columns: 1fr;
+        }
+
+        .workflow__title {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+      }
+
+      @media (max-width: 420px) {
+        .stat-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .brand__role {
+          display: none;
+        }
+
+        .hero h1 {
+          font-size: clamp(2.6rem, 15vw, 4rem);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar__inner">
+        <a class="brand" href="#top" aria-label="Dzung Dang profile">
+          <span class="brand__mark" aria-hidden="true"></span>
+          <span class="brand__text">
+            <span class="brand__name">Dzung Dang</span>
+            <span class="brand__role">Fullstack developer</span>
+          </span>
+        </a>
+        <nav class="nav" aria-label="Primary">
+          <a href="#summary">Summary</a>
+          <a href="#experience">Experience</a>
+          <a href="#projects">Projects</a>
+          <a href="#skills">Skills</a>
+          <a class="nav__cta" href="mailto:alex@example.com">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="top">
+      <div class="page">
+        <section class="hero" aria-labelledby="hero-title">
+          <div>
+            <div class="eyebrow"><span class="eyebrow__dot"></span> Profile</div>
+            <h1 id="hero-title">Fullstack developer building React and Go systems.</h1>
+            <p class="hero__copy">
+              Fullstack developer with strong experience in React and Go, focused on building
+              scalable systems. I work across backend architecture, API design, performance
+              optimization, and interactive product experiences.
+            </p>
+            <div class="hero__actions">
+              <a class="button button--dark" href="mailto:alex@example.com">Email</a>
+              <a class="button button--light" href="https://github.com/alexchen" target="_blank" rel="noreferrer">
+                GitHub
+              </a>
+              <a class="button button--light" href="https://alexchen.dev" target="_blank" rel="noreferrer">
+                Portfolio
+              </a>
+            </div>
+          </div>
+
+          <div class="hero__panel">
+            <div class="stat-grid" aria-label="Highlights">
+              <article class="stat">
+                <div class="stat__value">React</div>
+                <div class="stat__label">Frontend work for panorama and admin tools</div>
+              </article>
+              <article class="stat">
+                <div class="stat__value">Go</div>
+                <div class="stat__label">Backend services for scenes, APIs, and content</div>
+              </article>
+              <article class="stat">
+                <div class="stat__value">Krpano</div>
+                <div class="stat__label">Interactive 360° viewer with hotspots and multi-scene support</div>
+              </article>
+              <article class="stat">
+                <div class="stat__value">CI/CD</div>
+                <div class="stat__label">Improved deployment workflow using GitHub Actions</div>
+              </article>
+            </div>
+
+            <aside class="workflow" aria-label="Career flow">
+              <div class="workflow__title">
+                <span>Build flow</span>
+                <span>Build • Optimize • Ship</span>
+              </div>
+              <div class="workflow__steps">
+                <div class="step">
+                  <div class="step__label step__label--blue">Build</div>
+                  <div class="step__desc">React UI, panorama viewer, admin tools, and backend services.</div>
+                </div>
+                <div class="step">
+                  <div class="step__label step__label--pink">Optimize</div>
+                  <div class="step__desc">Tiling, lazy loading, CDN delivery, and performance tuning.</div>
+                </div>
+                <div class="step">
+                  <div class="step__label step__label--red">Ship</div>
+                  <div class="step__desc">Faster releases, better content management, and cleaner ops.</div>
+                </div>
+              </div>
+            </aside>
+          </div>
+        </section>
+
+        <section class="section" id="summary" aria-labelledby="summary-title">
+          <div class="section__head">
+            <h2 id="summary-title">Summary</h2>
+            <p class="section__meta">
+              A compact snapshot of the profile: who Alex is, what he shipped, and the scale of the
+              systems he led.
+            </p>
+          </div>
+
+          <div class="summary-grid">
+            <article class="card">
+              <h3 class="card__title">Location</h3>
+              <p class="card__sub">Long Biên, Hà Nội</p>
+              <ul class="card__list">
+                <li>Based in Vietnam</li>
+                <li>Fullstack and frontend-focused delivery</li>
+              </ul>
+            </article>
+            <article class="card">
+              <h3 class="card__title">Core Focus</h3>
+              <p class="card__sub">React interfaces, Go APIs, and scalable content systems</p>
+              <ul class="card__list">
+                <li>Panorama viewer development</li>
+                <li>API design and performance optimization</li>
+              </ul>
+            </article>
+            <article class="card">
+              <h3 class="card__title">Impact</h3>
+              <p class="card__sub">Built systems that improved delivery speed and user experience</p>
+              <ul class="card__list">
+                <li>Interactive 360° viewer with multi-scene support</li>
+                <li>Faster releases through GitHub Actions</li>
+              </ul>
+            </article>
+          </div>
+        </section>
+
+        <section class="section" id="experience" aria-labelledby="experience-title">
+          <div class="section__head">
+            <h2 id="experience-title">Experience</h2>
+            <p class="section__meta">
+              The work history is presented as a clean timeline, with the strongest achievements
+              surfaced first.
+            </p>
+          </div>
+
+          <div class="experience">
+            <article class="card job">
+              <div class="job__aside">
+                <div class="job__company">BAP IT JSC</div>
+                <div class="job__meta">
+                  <span>Hanoi, Vietnam</span>
+                  <span>2024 - 2025</span>
+                </div>
+              </div>
+              <div>
+                <div class="job__role">Fullstack Developer</div>
+                <ul class="job__bullets">
+                  <li>Built and maintained a fullstack panorama platform using React and Go.</li>
+                  <li>Developed an interactive 360° viewer with Krpano, including navigation, hotspots, and multi-scene support.</li>
+                  <li>Implemented asset handling and optimization with tiling, lazy loading, and CDN delivery to improve performance and load time.</li>
+                  <li>Built backend services in Go for scene management, APIs, and data handling.</li>
+                  <li>Created admin tools for panorama upload, configuration, and content management.</li>
+                  <li>Improved deployment workflow using GitHub Actions for faster releases.</li>
+                </ul>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="section" id="projects" aria-labelledby="projects-title">
+          <div class="section__head">
+            <h2 id="projects-title">Projects</h2>
+            <p class="section__meta">
+              Two open-source projects that show the same production mindset outside the workplace.
+            </p>
+          </div>
+
+          <div class="project-grid">
+            <article class="card project">
+              <div>
+                <div class="project__name">
+                  <span>Panorama Platform</span>
+                  <span class="project__tag">Product Work</span>
+                </div>
+                <p class="project__desc">
+                  Fullstack panorama experience with React frontend, Go backend, and Krpano-based
+                  immersive 360° navigation.
+                </p>
+              </div>
+              <div class="project__foot">
+                <span class="chip">React</span>
+                <span class="chip">Go</span>
+                <span class="chip">Krpano</span>
+              </div>
+            </article>
+
+            <article class="card project">
+              <div>
+                <div class="project__name">
+                  <span>Admin Tools</span>
+                  <span class="project__tag">Product Work</span>
+                </div>
+                <p class="project__desc">
+                  Upload, configuration, and content management tools that improved operation flow
+                  for panorama content.
+                </p>
+              </div>
+              <div class="project__foot">
+                <span class="chip">Admin UI</span>
+                <span class="chip">Content Management</span>
+                <span class="chip">Configuration</span>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="section" id="education" aria-labelledby="education-title">
+          <div class="section__head">
+            <h2 id="education-title">Education</h2>
+            <p class="section__meta">
+              Formal training in computer science, supporting the applied systems work above.
+            </p>
+          </div>
+
+          <div class="edu-grid">
+            <article class="card edu__item">
+              <div class="edu__degree">BS in Information Technology</div>
+              <div class="edu__school">Posts and Telecommunications Institute of Technology (PTIT)</div>
+              <div class="edu__year">Education</div>
+            </article>
+          </div>
+        </section>
+
+        <section class="section" id="skills" aria-labelledby="skills-title">
+          <div class="section__head">
+            <h2 id="skills-title">Skills</h2>
+            <p class="section__meta">
+              Organized by the kinds of systems Alex works on most often.
+            </p>
+          </div>
+
+          <div class="skills">
+            <article class="card">
+              <div class="skill__title">Frontend</div>
+              <div class="skill__list">
+                <span class="chip">React</span>
+                <span class="chip">TypeScript</span>
+                <span class="chip">HTML</span>
+                <span class="chip">CSS</span>
+              </div>
+            </article>
+            <article class="card">
+              <div class="skill__title">Backend</div>
+              <div class="skill__list">
+                <span class="chip">Go</span>
+                <span class="chip">REST APIs</span>
+                <span class="chip">Architecture</span>
+                <span class="chip">Performance</span>
+              </div>
+            </article>
+            <article class="card">
+              <div class="skill__title">Platform</div>
+              <div class="skill__list">
+                <span class="chip">GitHub Actions</span>
+                <span class="chip">CDN</span>
+                <span class="chip">Redis</span>
+                <span class="chip">PostgreSQL</span>
+              </div>
+            </article>
+            <article class="card">
+              <div class="skill__title">Languages</div>
+              <div class="skill__list">
+                <span class="chip">Java</span>
+                <span class="chip">Go</span>
+                <span class="chip">TypeScript</span>
+                <span class="chip">SQL</span>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="section" id="contact" aria-labelledby="contact-title">
+          <div class="section__head">
+            <h2 id="contact-title">Contact</h2>
+            <p class="section__meta">
+              The profile closes with direct links, making it easy to reach Alex or inspect his work.
+            </p>
+          </div>
+
+          <div class="contact">
+            <div class="contact__card">
+              <div class="contact__title">Open to roles building scalable product systems with strong frontend and backend ownership.</div>
+              <p class="footer-note">
+                Focus areas: React interfaces, Go services, performance tuning, deployment workflows,
+                and content-heavy product experiences.
+              </p>
+            </div>
+
+            <div class="contact__card">
+              <ul class="contact__list">
+                <li>
+                  <span class="contact__label">Email</span>
+                  <span class="contact__value"><a href="mailto:alex@example.com">alex@example.com</a></span>
+                </li>
+                <li>
+                  <span class="contact__label">LinkedIn</span>
+                  <span class="contact__value"><a href="https://linkedin.com/in/alexchen" target="_blank" rel="noreferrer">linkedin.com/in/alexchen</a></span>
+                </li>
+                <li>
+                  <span class="contact__label">Portfolio</span>
+                  <span class="contact__value"><a href="https://alexchen.dev" target="_blank" rel="noreferrer">alexchen.dev</a></span>
+                </li>
+                <li>
+                  <span class="contact__label">GitHub</span>
+                  <span class="contact__value"><a href="https://github.com/alexchen" target="_blank" rel="noreferrer">github.com/alexchen</a></span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+  </body>
+</html>
